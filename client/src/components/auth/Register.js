@@ -10,6 +10,7 @@ const Register = props => {
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    // redirect authed users to the Home component
     if (isAuthenticated) {
       props.history.push('/');
     }
@@ -18,6 +19,7 @@ const Register = props => {
       setAlert(error, 'danger');
       clearErrors();
     }
+    // show errors when error, isAuthenticated, or history change
     // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 

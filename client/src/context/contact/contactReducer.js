@@ -22,6 +22,8 @@ export default (state, action) => {
     case ADD_CONTACT:
       return {
         ...state,
+        // new contact is added to the beginning of the array
+        // change order below to move new contact to the end
         contacts: [action.payload, ...state.contacts],
         loading: false
       };

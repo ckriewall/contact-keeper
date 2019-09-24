@@ -8,6 +8,9 @@ const Home = () => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
+    // user token must be saved on every load.
+    // this keeps user logged in all the time.
+    // without this, a page refresh logs out the user.
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);

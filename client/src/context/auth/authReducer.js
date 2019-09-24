@@ -20,6 +20,7 @@ export default (state, action) => {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
+      // hold token in browser local storage
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
@@ -31,7 +32,10 @@ export default (state, action) => {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
+      // remove token from browser local storage
       localStorage.removeItem('token');
+      // clear auth context of user data.
+      // if auth was rejected, return error code from payload
       return {
         ...state,
         token: null,

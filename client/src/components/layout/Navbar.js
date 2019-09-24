@@ -13,6 +13,7 @@ const Navbar = ({ title, icon }) => {
 
   const onLogout = () => {
     logout();
+    // remove user's contacts from state onLogout
     clearContacts();
   };
 
@@ -22,6 +23,7 @@ const Navbar = ({ title, icon }) => {
       <li>
         <a onClick={onLogout} href='#!'>
           <i className='fas fa-sign-out-alt' />{' '}
+          {/* On small screens show icon only, hiding text */}
           <span className='hide-sm'>Logout</span>
         </a>
       </li>

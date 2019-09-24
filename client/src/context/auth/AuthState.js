@@ -27,11 +27,13 @@ const AuthState = props => {
 
   // Load User
   const loadUser = async () => {
+    // load token into default headers (see utils folder)
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
 
     try {
+      // retrieve current user data from Mongo
       const res = await axios.get('/api/auth');
 
       dispatch({
@@ -44,6 +46,8 @@ const AuthState = props => {
   };
 
   // Register User
+  // formData is the data needed to register user.
+  // The HTTP POST includes data, so we need to pass headers
   const register = async formData => {
     const config = {
       headers: {
@@ -52,15 +56,22 @@ const AuthState = props => {
     };
 
     try {
+      // an axios request:
+      // 1) to the url, preceded by the proxy address from package.json
+      // 2) containing formData
+      // 3) with config headers announcing json content
       const res = await axios.post('/api/users', formData, config);
 
       dispatch({
+        // res.data will contain a token from the API
         type: REGISTER_SUCCESS,
         payload: res.data
       });
 
       loadUser();
     } catch (err) {
+      // if registration fails dispatch fail action.
+      // the payload from express has a message in .msg
       dispatch({
         type: REGISTER_FAIL,
         payload: err.response.data.msg

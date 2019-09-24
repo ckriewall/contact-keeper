@@ -9,6 +9,9 @@ const Contacts = () => {
 
   const { contacts, filtered, getContacts, loading } = contactContext;
 
+  // The contacts array is empty by default.
+  // Call getContacts to retrieve contacts from Mongo
+  // when the page loads
   useEffect(() => {
     getContacts();
     // eslint-disable-next-line
