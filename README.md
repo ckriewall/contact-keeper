@@ -15,7 +15,7 @@ npm client-install
 
 ### Mongo connection setup
 
-Edit your /config/default.json file to include the correct MongoDB URI
+Edit `/config/default.json` to include the correct MongoDB URI
 
 ### Run Server
 
@@ -27,4 +27,6 @@ npm run client  # React Client Only :3000
 
 ## Deploy to Heroku
 
+```bash
 git push heroku master
+```
